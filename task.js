@@ -10,14 +10,14 @@ class UserPlaylistTemplate {
         this.playlist.push(song)
         //  checking the playlist length is less than capacity if it is greater than capasity then we are removingm last song from the list
         if (this.playlist.length > this.capacity) {
-            console.log(`capacity is more than ${this.capacity}`)
+            //if capacity is more than length we are removing first song
             this.playlist.shift()
         }
 
     }
     getRecentPlayedSong() {
-        // print the same list as playList saved,
-        console.log(this.playlist)
+        // return the same list as playList saved,
+        return this.playlist
     }
 
 }
@@ -40,11 +40,12 @@ class storingAndDisplayingPlaylist {
     getRecentlyPlayed(user) {
 
         if (this.store[user]) {
-            // if user exist then it will retunr the recent played list
-            return this.store[user].getRecentPlayedSong();
+            // if user exist then it will print the recent played list
+            console.log(this.store[user].getRecentPlayedSong());
         } else {
-            // if user not available then will retun the empty.
-            return [];
+            // if user not available then printing below error
+            console.error("user not available in memory")
+         
         }
     }
 }
@@ -53,16 +54,28 @@ class storingAndDisplayingPlaylist {
 
 let savan = new storingAndDisplayingPlaylist()
 
-//adding
+//example- 1
+//adding songs to user1
 savan.addRecentPlayed("user1", "song-1")
 savan.addRecentPlayed("user1", "song-2")
 savan.addRecentPlayed("user1", "song-3")
 savan.addRecentPlayed("user1", "song-4")
 savan.addRecentPlayed("user1", "song-2")
 
+//printing playlist for user1
+savan.getRecentlyPlayed("user1")
+
+
+//example- 2
+
+//adding songs to user2
 savan.addRecentPlayed("user2", "song-2")
 savan.addRecentPlayed("user2", "song-1")
 
 //printing
-savan.getRecentlyPlayed("user1")
 savan.getRecentlyPlayed("user2")
+//savan.getRecentlyPlayed("user2")
+
+
+//example-3
+savan.getRecentlyPlayed("user3")
